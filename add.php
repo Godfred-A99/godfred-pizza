@@ -40,8 +40,17 @@
                 $errors['ingredient'] = 'Ingredient must be a comma separated list';
             }
         }
-    };
- 
+
+        if(array_filter($errors)) {
+            // echo 'errors in the form';
+        }else {
+            // echo 'form is valid';
+            header('Location: index.php');
+        }
+    
+    } // end of GET check
+
+
 
 
 ?>
@@ -49,6 +58,7 @@
 <html lang="en">
 
     <?php include('templetes/header.php');?>
+
     <section class="container grey-text">
         <h4 class="center">Add Pizza</h4>
         <form action="add.php" method="GET" class="white">
@@ -66,5 +76,6 @@
             </div>
         </form>
     </section>
+    
     <?php include('templetes/footer.php') ?>
 </html>
