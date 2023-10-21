@@ -1,28 +1,35 @@
 <?php
 
     if(isset($_GET['submit'])) {
-        // echo htmlspecialchars($_GET['email']);
-        // echo htmlspecialchars($_GET['title']);
-        // echo htmlspecialchars($_GET['ingredient']);
+        
         // check email
         if(empty($_GET['email'])){
             echo 'An email is required </br>';
         }else{
-            echo htmlspecialchars($_GET['email']);
+            $email = htmlspecialchars($_GET['email']);
+            if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                echo 'email must be a valid email address';
+            }
         }
 
         // check title
         if(empty($_GET['title'])){
             echo 'An title is required </br>';
         }else{
-            echo htmlspecialchars($_GET['title']);
+            $title = htmlspecialchars($_GET['title']);
+            if(!preg_match('/^[a-zA-Z\s]+$/' , $title)) {
+                echo 'Title must be  letters and spaces only';
+            }
         }
 
         // check ingredient
         if(empty($_GET['ingredient'])){
             echo 'At least one ingredient is required  </br>';
         }else{
-            echo htmlspecialchars($_GET['ingredient']);
+            $ingredient = htmlspecialchars($_GET['ingredient']);
+            if(!preg_match('/^([a-zA-Z\s]+)(,\s*[a-zA-Z\s]*)*$/' , $ingredient)) {
+                echo 'Ingredient must be a comma separated list';
+            }
         }
     };
 
