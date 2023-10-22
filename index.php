@@ -10,7 +10,10 @@
     $sql = 'SELECT title, ingredient, id FROM pizzas';
 
     // make query & get result 
-    $result = mysqli_query($conn, $sql)
+    $result = mysqli_query($conn, $sql);
+
+    //fetching the result rows as an array
+    $pizzas = mysqli_fetch_all($result, MYSQLI_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
