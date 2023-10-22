@@ -1,10 +1,6 @@
 <?php
 
-    // connect to database
-    $conn = mysqli_connect('localhost', 'godfred', '[ymfPMc#@#2aHrN', 'godfred pizza');
-    if(!$conn){
-        echo 'connection error: ' . mysqli_connect_error();
-    }
+include('config/db_connect.php');
 
     //write query from all pizza
     $sql = 'SELECT title, ingredient, id FROM pizzas ORDER BY created_at';
@@ -33,15 +29,15 @@
     <h4 class="center grey-text">Pizzas!</h4>
     <div class="container">
         <div class="row">
-            <?php foreach($pizzas as $pizza) {?>
+            <?php foreach($pizzas as $pizza): ?>
                 <div class="col s6 md3">
                     <div class="card z-depth-0">
                         <div class="card-content center">
                             <h6><?php echo htmlspecialchars($pizza['title']); ?></h6>
                             <ul>
-                            <?php foreach(explode(',', $pizza['ingredient']) as $ing) {?>
+                            <?php foreach(explode(',', $pizza['ingredient']) as $ing): ?>
                                 <li><?php echo htmlspecialchars($ing)?></li>
-                            <?php }?>
+                            <?php endforeach?>
                             </ul>
                         </div>
                         <div class="card-action right-align">
@@ -49,11 +45,9 @@
                         </div>
                     </div>
                 </div>
-
-            <?php }?>
+            <?php endforeach?>
         </div>
     </div>
-
     
     <?php include('templetes/footer.php') ?>
 </html>
