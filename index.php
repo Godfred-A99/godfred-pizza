@@ -7,7 +7,7 @@
     }
 
     //write query from all pizza
-    $sql = 'SELECT title, ingredient, id FROM pizzas';
+    $sql = 'SELECT title, ingredient, id FROM pizzas ORDER BY created_at';
 
     // make query & get result 
     $result = mysqli_query($conn, $sql);
@@ -21,12 +21,33 @@
     //closing connection 
     mysqli_close($conn);
 
-    print_r($pizzas)
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
     <?php include('templetes/header.php');?>
+
+    <h4 class="center grey-text">Pizzas!</h4>
+    <div class="container">
+        <div class="row">
+            <?php foreach($pizzas as $pizza) {?>
+                <div class="col s6 md3">
+                    <div class="card z-depth-0">
+                        <div class="card-content center">
+                            <h6><?php echo htmlspecialchars($pizza['title']); ?></h6>
+                            <div><?php echo htmlspecialchars($pizza['ingredient']);  ?></div>
+                        </div>
+                        <div class="card-action right-align">
+                            <a href="#" class="brand-text">more info</a>
+                        </div>
+                    </div>
+                </div>
+
+            <?php }?>
+        </div>
+    </div>
+
     
     <?php include('templetes/footer.php') ?>
 </html>
