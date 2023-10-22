@@ -7,7 +7,10 @@
     }
 
     //write query from all pizza
-    $sql = 'SELECT title, ingredient, id FROM pizzas'
+    $sql = 'SELECT title, ingredient, id FROM pizzas';
+
+    // make query & get result 
+    $result = mysqli_query($conn, $sql)
 ?>
 <!DOCTYPE html>
 <html lang="en">
